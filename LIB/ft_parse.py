@@ -10,10 +10,17 @@ def readData(str):
                 for line in fscv:
                     for i in range(0, len(line)):
                         if fscv.line_num == 1:
-                            data.append([]);
+                            data.append([])
                         data[i].append(line[i])
             except csv.Error as err:
                 sys.exit("An error occured when reading file: %s" % err)
     except IOError:
         sys.exit("File not accessible")
+    return data
+
+def retData(args):
+    data = []
+    for i in range(0,len(args)):
+        data.append([])
+        data[i].append(args[i])
     return data
