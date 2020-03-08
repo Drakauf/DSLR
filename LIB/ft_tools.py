@@ -1,4 +1,5 @@
 import numpy as np
+from LIB.ft_maths import ft_count, ft_mean, ft_std, std_
 
 def fillRet(data, retD):
     notNum = []
@@ -8,14 +9,14 @@ def fillRet(data, retD):
             column = column[~np.isnan(column)]
             if column.any():
                 retD[0].append(data[i][0])
-                retD[1].append("count")
-                retD[2].append("mean")
-                retD[3].append("std")
-                retD[4].append("min")
-                retD[5].append("25")
-                retD[6].append("50")
-                retD[7].append("75")
-                retD[8].append("max")
+                retD[1].append(ft_count(column))
+                retD[2].append(ft_mean(column))
+                retD[3].append(ft_std(column))
+#                retD[4].append("min")
+#                retD[5].append("25")
+#                retD[6].append("50")
+#                retD[7].append("75")
+#                retD[8].append("max")
             else:
                 raise Exception()
         except :

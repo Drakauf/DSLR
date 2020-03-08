@@ -9,8 +9,10 @@ def printNotNum(data):
 def printRet(data):
     for i in range(0, len(data)):
         for j in range(0, len(data[i])):
-            if (j == 0):
-                print("%-15.12s" %data[i][j], end="")
+            if j == 0:
+                print("{:15.12s}".format(data[i][j]), end="")
+            elif i == 0:
+                print("{:>18.15}".format(data[i][j]), end="")
             else:
-                print("%18.15s" %data[i][j], end="")
+                print("{:>18f}".format(data[i][j]), end="")
         print("")
