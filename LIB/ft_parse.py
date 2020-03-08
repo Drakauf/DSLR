@@ -1,5 +1,6 @@
 import sys
 import csv
+import numpy as np
 
 def readData(str):
     data = []
@@ -11,6 +12,11 @@ def readData(str):
                     for i in range(0, len(line)):
                         if fscv.line_num == 1:
                             data.append([])
+                        try:
+                            line[i] = float(line[i])
+                        except:
+                            if not line[i]:
+                                line[i] = np.nan
                         data[i].append(line[i])
             except csv.Error as err:
                 sys.exit("An error occured when reading file: %s" % err)
