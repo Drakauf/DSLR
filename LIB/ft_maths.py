@@ -1,7 +1,7 @@
 import numpy as np
 import math
 
-def ft_count(data):
+def ftCount(data):
     l = len(data)
     try:
         data = data[~np.isnan(data)]
@@ -9,17 +9,17 @@ def ft_count(data):
     except:
         return(l)
 
-def ft_mean(data):
+def ftMean(data):
     ret = 0
     for nb in data:
         if not np.isnan(nb):
             ret += nb
-    return(ret/ft_count(data))
+    return(ret/ftCount(data))
 
-def ft_std(data):
+def ftStd(data):
     ret = 0
     i = 0
-    mean = ft_mean(data)
+    mean = ftMean(data)
     for nb in data:
         if not np.isnan(nb):
             ret = ret + (nb - mean) ** 2
@@ -28,7 +28,7 @@ def ft_std(data):
     ret = ret ** 0.5
     return(ret)
 
-def ft_min(data):
+def ftMin(data):
     count = 1
     for nb in data:
         if not np.isnan(nb):
@@ -39,7 +39,7 @@ def ft_min(data):
                 ret = nb
     return(ret)
 
-def ft_max(data):
+def ftMax(data):
     count = 1
     for nb in data:
         if not np.isnan(nb):
@@ -50,7 +50,7 @@ def ft_max(data):
                 ret = nb
     return(ret)
 
-def ft_percentile(data, nb):
+def ftPercentile(data, nb):
     data.sort()
     k = (len(data)-1) * (nb/100)
     f = math.floor(k)

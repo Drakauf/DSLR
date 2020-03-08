@@ -1,7 +1,7 @@
 import sys
 import numpy as np
 from collections import Iterable
-from LIB.ft_maths import ft_count, ft_mean, ft_std, ft_min, ft_max, ft_percentile
+from LIB.ft_maths import ftCount, ftMean, ftStd, ftMin, ftMax, ftPercentile
 
 def fillRet(data, retD):
     notNum = []
@@ -11,14 +11,14 @@ def fillRet(data, retD):
             column = column[~np.isnan(column)]
             if column.any():
                 retD[0].append(data[i][0])
-                retD[1].append(ft_count(column))
-                retD[2].append(ft_mean(column))
-                retD[3].append(ft_std(column))
-                retD[4].append(ft_min(column))
-                retD[5].append(ft_percentile(column,25))
-                retD[6].append(ft_percentile(column,50))
-                retD[7].append(ft_percentile(column,75))
-                retD[8].append(ft_max(column))
+                retD[1].append(ftCount(column))
+                retD[2].append(ftMean(column))
+                retD[3].append(ftStd(column))
+                retD[4].append(ftMin(column))
+                retD[5].append(ftPercentile(column,25))
+                retD[6].append(ftPercentile(column,50))
+                retD[7].append(ftPercentile(column,75))
+                retD[8].append(ftMax(column))
             else:
                 raise Exception()
         except :
