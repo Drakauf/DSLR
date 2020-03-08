@@ -1,4 +1,5 @@
 import numpy as np
+import math
 
 def ft_count(data):
     l = len(data)
@@ -27,3 +28,35 @@ def ft_std(data):
     ret = ret ** 0.5
     return(ret)
 
+def ft_min(data):
+    count = 1
+    for nb in data:
+        if not np.isnan(nb):
+            if count:
+                ret = nb
+                count = 0
+            if nb < ret:
+                ret = nb
+    return(ret)
+
+def ft_max(data):
+    count = 1
+    for nb in data:
+        if not np.isnan(nb):
+            if count:
+                ret = nb
+                count = 0
+            if nb > ret:
+                ret = nb
+    return(ret)
+
+def ft_percentile(data, nb):
+    data.sort()
+    k = (len(data)-1) * (nb/100)
+    f = math.floor(k)
+    c = math.ceil(k)
+    if f == c:
+        return data[int(k)]
+    d0 = data[int(f)] * (c-k)
+    d1 = data[int(c)] * (k-f)
+    return d0+d1
