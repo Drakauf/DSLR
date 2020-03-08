@@ -13,7 +13,7 @@ def ft_mean(data):
     for nb in data:
         if not np.isnan(nb):
             ret += nb
-    return(nb/ft_count(data))
+    return(ret/ft_count(data))
 
 def ft_std(data):
     ret = 0
@@ -26,3 +26,4 @@ def ft_std(data):
     ret = ret/i
     ret = ret ** 0.5
     return(ret)
+
