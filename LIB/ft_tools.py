@@ -28,6 +28,7 @@ def fillRet(data, retD):
 def updateObj(dest, src):
     if not type(dest) is dict or not type(src) is dict:
         sys.exit("updateObj : one of your parameter is not a dict")
+    print(dest)
     for key in src:
         if isinstance(src[key], Iterable):
             for elem in src[key]:
@@ -40,3 +41,4 @@ def updateObj(dest, src):
                 dest[key] = [dest[key], src[key]]
             except:
                 dest[key] = src[key]
+    return(dest)

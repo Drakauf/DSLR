@@ -8,6 +8,8 @@ import pandas as pd
 
 import seaborn as sns
 import matplotlib.pyplot as plt
+from sklearn.preprocessing import MinMaxScaler
+
 
 def getData(house, marks, feature):
     ret = dict()
@@ -45,6 +47,7 @@ def getData(house, marks, feature):
     return(retFormat)
 
 if __name__ == "__main__":
+    scaler = MinMaxScaler()
     verbose = 0
     lArg = len(sys.argv);
     if lArg == 3 and sys.argv[2] == '-v':
@@ -52,7 +55,8 @@ if __name__ == "__main__":
     if (lArg != 2 and not verbose):
         sys.exit("Wrong usage: python3 describe.py filename [-v]");
     data = readData(sys.argv[1])
-    
+    data2 = np.array(data)
+    toRender = dict()
     d = ["a", "b", "c", "d", "a"]
     d2 = np.array([1, 3, 5, np.nan, 1.2], dtype=float)
 
@@ -68,21 +72,23 @@ if __name__ == "__main__":
             'class':['o','o','o'],
             'test': 3
             }
-    updateObj(dictt, dictt2)
-    test = getData(data[1][1:],np.array(data[6][1:], dtype=float), data[6][0])
-    test["Feature"].append("Arithman")
-    test["Marks"].append(490)
-    test["House"].append("School")
-    
-    test["Feature"].append("Arithman")
-    test["Marks"].append(49)
-    test["House"].append("Slytherin")
-
-    df = pd.DataFrame(test , columns = ['Feature','Marks','House'])
+    #print(data2[6:,1:])
+    print(scaler.fit(data2[6:,1:]))
+    data3 = scaler.transform(data2[6:,1:])
+    print(data3)
+    colInfo = getData(data[1][1:],np.array(data3[0], dtype=float), data[6][0])
+    toRender = updateObj(toRender, colInfo)
+    colInfo = getData(data[1][1:],np.array(data3[1], dtype=float), data[7][0])
+    toRender = updateObj(toRender, colInfo)
+    colInfo = getData(data[1][1:],np.array(data3[2], dtype=float), data[8][0])
+    toRender = updateObj(toRender, colInfo)
+    colInfo = getData(data[1][1:],np.array(data3[3], dtype=float), data[9][0])
+    toRender = updateObj(toRender, colInfo)
+    colInfo = getData(data[1][1:],np.array(data3[4], dtype=float), data[10][0])
+    toRender = updateObj(toRender, colInfo)
+    df = pd.DataFrame(toRender , columns = ['Feature','Marks','House'])
     sns.catplot(x="Feature", y="Marks", hue="House", kind="bar", data=df)
     sns.set(style="darkgrid")
-    plt.title('Histogram')
     plt.show()
-    print(df)
 
 
