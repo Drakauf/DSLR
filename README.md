@@ -6,6 +6,7 @@ Découvrez la Data Science à travers ce projet dans la reconstitution du Choixp
 |NumPy|https://jakevdp.github.io/PythonDataScienceHandbook/02.02-the-basics-of-numpy-arrays.html|
 |PrintFormat|https://pyformat.info/|
 |std|https://www.mathsisfun.com/data/standard-deviation.html|
+|Sns|https://seaborn.pydata.org/tutorial/categorical.html|
 
 ----
 <p align="right">
