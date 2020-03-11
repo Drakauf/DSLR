@@ -10,7 +10,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import MinMaxScaler
 
-def getData2(house, marks, feature):
+def getData2(house, marks, feature, mean):
     retFormat = dict()    
     retFormat["Feature"] = []
     retFormat["Marks"] = []
@@ -22,6 +22,7 @@ def getData2(house, marks, feature):
             retFormat["Feature"].append(feature)
             retFormat["Marks"].append(marks[i])
             retFormat["House"].append(house[i])
+        i += 1
     return(retFormat)
 
 def getData(house, marks, feature, mean):
@@ -29,6 +30,7 @@ def getData(house, marks, feature, mean):
     i = 0
     j = 0
     retFormat = dict()
+
     if mean:
         retFormat["Feature"] = [feature]
         retFormat["Marks"] = [0]
@@ -104,25 +106,38 @@ if __name__ == "__main__":
             break
 
     #If scale option is selected
-    if scale:
-        data2 = np.array(data)
-        scaler = MinMaxScaler()
-        scaler.fit(data2[6:,1:])
-        data3 = scaler.transform(data2[6:,1:])
-        for i in range(6, len(data)):
-            colInfo = getData(data[1][1:], np.array(data3[i-6], dtype=float), data[i][0], mean)
-            toRender = updateObj(toRender, colInfo)
+    #if scale:
+    #    data2 = np.array(data)
+    #    scaler = MinMaxScaler()
+    #    scaler.fit(data2[6:,1:])
+    #    data3 = scaler.transform(data2[6:,1:])
+    #    for i in range(6, len(data)):
+    #        colInfo = getData2(data[1][1:], np.array(data3[i-6], dtype=float), data[i][0], mean)
+    #        toRender = updateObj(toRender, colInfo)
     #No need to scale
-    else:
-         for i in range(6, len(data)):
-            colInfo = getData(data[1][1:],np.array(data[i][1:], dtype=float), data[i][0], mean)
-            toRender = updateObj(toRender, colInfo)
+    #else:
+    #     for i in range(6, len(data)):
+    #        colInfo = getData2(data[1][1:],np.array(data[i][1:], dtype=float), data[i][0], mean)
+    #        toRender = updateObj(toRender, colInfo)
 
-    df = pd.DataFrame(toRender , columns = ['Feature','Marks','House'])
-    print(df)
+    for i in range(1, len(data[1])):
+        try:
+            toRender["House"].append(data[1][i])
+        except:
+            toRender["House"] = [data[1][i]]
+    print(toRender)
+    #df = pd.DataFrame(toRender , columns = ['Feature','Marks','House'])
+    #print(data)
+    #sns.swarmplot(x="Feature", y="Marks", hue="House", data=df)
     #sns.swarmplot(x="House", y="Marks", hue="Feature", data=df)
-    sns.scatterplot(x="Feature",y="Marks", hue="House", style="House", data=df)
-    sns.set(style="darkgrid")
-    plt.title('scatterPlot')
-    plt.show()
-    print(df)
+    #sns.swarmplot(x="Feature", y="Marks", data=df)
+    #sns.set(style="darkgrid")
+    #plt.title('scatterPlot')
+    #plt.show()
+    #print(df)
+
+    #g = sns.PairGrid(df, hue="House")
+    #g.map_diag(plt.hist)
+    #g.map_offdiag(plt.scatter)
+    #g.add_legend();
+    #plt.show()
