@@ -110,7 +110,7 @@ if __name__ == "__main__":
         scaler.fit(data2[6:,1:])
         data3 = scaler.transform(data2[6:,1:])
         for i in range(6, len(data)):
-            colInfo = getData2(data[1][1:], np.array(data3[i-6], dtype=float), data[i][0], mean)
+            colInfo = getData(data[1][1:], np.array(data3[i-6], dtype=float), data[i][0], mean)
             toRender = updateObj(toRender, colInfo)
     #No need to scale
     else:
@@ -120,7 +120,9 @@ if __name__ == "__main__":
 
     df = pd.DataFrame(toRender , columns = ['Feature','Marks','House'])
     print(df)
-    sns.swarmplot(x="Feature", y="Marks", hue="House", data=df)
+    #sns.swarmplot(x="Feature", y="Marks", hue="House", data=df)
+    sns.swarmplot(x="House", y="Marks", hue="Feature", data=df)
+    #sns.swarmplot(x="Feature", y="Marks", data=df)
     sns.set(style="darkgrid")
     plt.title('scatterPlot')
     plt.show()
