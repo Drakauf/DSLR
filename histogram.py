@@ -56,7 +56,6 @@ if __name__ == "__main__":
 
     print("reading data")
     
-    reader = 1
     toRender = dict()
     scale = 0
     mean = 0
