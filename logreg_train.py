@@ -1,14 +1,11 @@
+import re
 import sys
 import numpy as np
 import pandas as pd
-from LIB.ft_maths import ftScale
-import re
-
 import seaborn as sns; sns.set()
 import matplotlib.pyplot as plt
 
-np_load_old = np.load
-np.load = lambda *a,**k: np_load_old(*a, allow_pickle=True, **k)
+from LIB.ft_maths import ftScale
 
 def graphObj():
     retObj = dict()
