@@ -60,3 +60,10 @@ def ftPercentile(data, nb):
     d0 = data[int(f)] * (c-k)
     d1 = data[int(c)] * (k-f)
     return d0+d1
+
+def ftScale(data):
+    mean = ftMean(data)
+    std = ftStd(data)
+    for i in range(0, len(data)):
+        data[i] = (data[i] - mean) / std
+    return(data)
