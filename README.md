@@ -10,5 +10,3 @@ Découvrez la Data Science à travers ce projet dans la reconstitution du Choixp
 |dataFrame manipulation|https://www.shanelynn.ie/select-pandas-dataframe-rows-and-columns-using-iloc-loc-and-ix/|
 
 ----
-<p align="right">
-Credits </br><a href="https://github.com/Drakauf">shthevak</a>
